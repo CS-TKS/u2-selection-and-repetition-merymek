@@ -1,8 +1,6 @@
 # initialize score
 score = 0
 
-# define a quiz function to make everything easy on the eyes
-
 # create list for questions, choices, information, and answers
 questions = ["When did practices involving vaccinating begin in human history?",
              "Who first brought the inoculation (immunization) of smallpox to Europe in 1721?",
@@ -36,38 +34,47 @@ more_info = ["Certainly! Although practices may have begun as early as 200 BCE, 
 
 answers = [1, 2, 2, 4, 3]
 
-# create quiz
-for i in range(len(questions)):
-    print(f"Question {i + 1}: {questions[i]}")
-    print(choices[i])
-    user = int(input(f"Answer {i + 1} (Number only): "))
-    if user == answers[i]:
-        score = score + 1
-        print(f"Congratulations! The answer is ({answers[i]})! Your score is now {score}.")
-    else:
-        info = input(f"Your answer was ({user}), which is incorrect. The answer is ({answers[i]}). "
-                     "Would you like to learn more info about this question?: ").lower()
-        if info == 'yes':
-            print(more_info[i])
-    print("")
-
-# introduction
+# quiz
 while True:
-    print("-"*15)
+    print("-" * 15)
     choice_to_play = input("Welcome to the amazing quiz of medical history! The history of vaccination began in the "
-                       "late 18th century when scientist Edward Jenner discovered that cowpox could protect against"
-                       "smallpox. This groundbreaking finding led to the development of vaccines that train the "
-                       "immune system to fight diseases. Over time, vaccines have played a crucial role in "
-                       "controlling and even eradicating deadly illnesses like smallpox and polio. Today, vaccination "
-                       "remains one of the most effective public health tools for preventing disease and saving lives "
-                       "worldwide. So, would yu like to play a quiz on medical history?").lower()
+                           "\nlate 18th century when scientist Edward Jenner discovered that cowpox could protect "
+                           "against"
+                           "\nsmallpox. This groundbreaking finding led to the development of vaccines that train the "
+                           "\nimmune system to fight diseases. Over time, vaccines have played a crucial role in "
+                           "\ncontrolling and even eradicating deadly illnesses like smallpox and polio. Today, "
+                           "\nvaccination"
+                           "remains one of the most effective public health tools for preventing disease and saving "
+                           "lives "
+                           "worldwide. \nSo, would you like to play a quiz on medical history?: ").lower()
+
     if choice_to_play == 'yes':
         print("Great! Let's begin the amazing quiz on vaccination history!")
+        print("-" * 15)
+        for i in range(len(questions)):
+            print(f"Question {i + 1}: {questions[i]}")
+            print(choices[i])
+            user = int(input(f"Answer {i + 1} (Number only): "))
+            if user == answers[i]:
+                score = score + 1
+                print(f"Congratulations! The answer is ({answers[i]})! Your score is now {score}.")
+            else:
+                info = input(f"Your answer was ({user}), which is incorrect. The answer is ({answers[i]}). "
+                             "Would you like to learn more info about this question?: ").lower()
+                if info == 'yes':
+                    print(more_info[i])
+            print("")
+        if score == len(questions):
+            print("Congratulations, you mastered the history of vaccination!")
+        elif score <= 2:
+            print(f"Your score is {score}. You might want to try redoing the test.")
+        else:
+            print(f"Your score was {score}. Good job! Next time, try to master the quiz.")
+
+        second_choice_playing = int(input("Would you like to play again? (1) Yes (0) No"))
+        if second_choice_playing == 0:
+            print("See you next time!")
+            break
     else:
         print("Too bad; let's meet again next time!")
         break
-
-
-
-
-
